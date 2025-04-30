@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Publicidad Interactiva</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    body {
+      background: url('https://raw.githubusercontent.com/acamarenavelazquez/CF/refs/heads/main/fondo_site_aacc.jpg') no-repeat center center;
+      background-size: contain;
+      background-color: #000;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      position: relative;
+    }
+
+    .boton {
+      position: absolute;
+      top: 60%;   /* ajusta este valor */
+      left: 50%;  /* ajusta este valor */
+      transform: translate(-50%, -50%);
+      width: 25vw;
+      max-width: 300px;
+      height: auto;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .boton:hover {
+      transform: translate(-50%, -50%) scale(1.05);
+    }
+
+    @media (max-width: 600px) {
+      .boton {
+        width: 50vw;
+      }
+    }
+  </style>
+</head>
+<body>
+  <img
+    src="https://raw.githubusercontent.com/acamarenavelazquez/CF/refs/heads/main/AACC_boton.png"
+    alt="Botón"
+    class="boton"
+    onclick="registrarYRedirigir()"
+  />
+
+  <script>
+    function registrarYRedirigir() {
+      const endpoint = "https://script.google.com/a/macros/bbva.com/s/AKfycbxTazSijsu0AVbO5p2L-4m3_01oVcW9JvaISRAUbgWtyr-qi0LO6jGE7CfWCiMOPnjxBw/exec"; // <-- reemplaza esto
+      const destino = "https://sites.google.com/bbva.com/conocimientofest/inicio";     // <-- reemplaza esto
+
+      fetch(endpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: `ua=${encodeURIComponent(navigator.userAgent)}`
+      }).finally(() => {
+        window.location.href = destino;
+      });
+    }
+  </script>
+</body>
+</html>
